@@ -594,3 +594,11 @@ video { transform: translateZ(0); }
 .hero-design.desktop-image .page {
   overflow: visible !important;
 }
+
+/* === TITLE BEHIND PHOTO SPLIT === *
+ * The desktop hero design is rendered twice so the name can sit behind
+ * me.webp while testimonials stay on top. Each instance hides the group
+ * it doesn't need.
+ */
+.hero-design.hide-testimonials .testimonial-group { display: none !important; }
+.hero-design.hide-title .title-group { display: none !important; }

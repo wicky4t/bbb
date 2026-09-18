@@ -39,8 +39,8 @@ const mobileImages: HeroImage[] = [
 ];
 
 const desktopImages: HeroImage[] = [
-  { src: '/pc/me.webp',    delay: 2.2, isStatic: true,  noHover: false, morph: 'figure' },
-  { src: '/pc/me 2.webp',  delay: 2.4, isStatic: true,  noHover: false, morph: 'me2' },
+  { src: '/pc/me.webp',    delay: 2.2, isStatic: true,  noHover: false, morph: 'figure', zIndex: 2 },
+  { src: '/pc/me 2.webp',  delay: 2.4, isStatic: true,  noHover: false, morph: 'me2', zIndex: 3 },
 ];
 
 // Fixed canvas sizes of the exported hero designs
@@ -268,7 +268,7 @@ function App() {
                     }
                   : {
                       inset: 0, width: '100%', height: '100%',
-                      zIndex: img.isStatic ? 0 : index + 10,
+                      zIndex: img.zIndex ?? (img.isStatic ? 0 : index + 10),
                       animation: img.isStatic ? 'none' : `slideUp 1s ease-out ${img.delay}s forwards`,
                       transform: img.isStatic ? 'translateY(0)' : 'translateY(100vh)',
                     })
@@ -280,14 +280,25 @@ function App() {
             </ClickWrapper>
           ))}
 
-          {/* Desktop-only hero design (hm (1).html) */}
+          {/* Title — rendered behind me.webp */}
           <HeroDesign
             html={heroDesktopHtml}
             width={HERO_DESKTOP.width}
             height={HERO_DESKTOP.height}
             fit="contain"
             group
-            className="desktop-image hero-image-layer fixed no-parallax-y hero-design-text"
+            className="desktop-image hero-image-layer fixed no-parallax-y hero-design-text hide-testimonials"
+            style={{ inset: 0, width: '100%', height: '100%', zIndex: 1 }}
+          />
+
+          {/* Testimonials — rendered on top */}
+          <HeroDesign
+            html={heroDesktopHtml}
+            width={HERO_DESKTOP.width}
+            height={HERO_DESKTOP.height}
+            fit="contain"
+            group
+            className="desktop-image hero-image-layer fixed no-parallax-y hero-design-text hide-title"
             style={{ inset: 0, width: '100%', height: '100%', zIndex: 20 }}
           />
         </div>
