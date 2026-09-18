@@ -443,6 +443,15 @@ video { transform: translateZ(0); }
   cursor: pointer;
 }
 
+/* === FIXED-SIZE HERO IMAGE (me.webp) — stays at reference width, doesn't shrink === */
+.hero-img-me {
+  min-width: 1920px;
+  max-width: none;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
 @media (prefers-reduced-motion: reduce) {
   .bounce-arrow,
   .animate-fade-in-delayed,
