@@ -79,6 +79,7 @@ const skills = [
 function App() {
   const [showContact, setShowContact] = useState(false);
   const [ready, setReady] = useState(false);
+  const [viewportWidth, setViewportWidth] = useState(window.innerWidth);
   const heroRef = useRef<HTMLDivElement>(null);
   const portfolioSectionRef = useRef<HTMLDivElement>(null);
 
@@ -122,7 +123,7 @@ function App() {
 
   useEffect(() => {
     setMobileVH();
-    const update = () => { setMobileVH(); };
+    const update = () => { setMobileVH(); setViewportWidth(window.innerWidth); };
     window.addEventListener('resize', update);
     window.addEventListener('orientationchange', update);
     window.addEventListener('scroll', setMobileVH);
@@ -168,6 +169,8 @@ function App() {
   }, []);
 
   const vh = (n: number) => window.innerWidth < 768 ? `calc(var(--mobile-vh) * ${n})` : `${n}vh`;
+
+  const isNarrowDesktop = viewportWidth >= 768 && viewportWidth < 1200;
 
   return (
     <div className="relative" style={{ opacity: ready ? 1 : 0, transition: 'opacity 0.6s ease-out' }}>
@@ -261,14 +264,20 @@ function App() {
                       transform: 'translateY(100vh)',
                     }
                   : {
-                      inset: 0, width: '100%', height: '100%',
+                      top: isNarrowDesktop ? '30%' : 0,
+                      right: 0,
+                      bottom: 0,
+                      left: 0,
+                      width: '100%',
+                      height: isNarrowDesktop ? '70%' : '100%',
                       zIndex: img.isStatic ? 0 : index + 10,
+                      transition: 'top 0.5s ease, height 0.5s ease',
                       animation: img.isStatic ? 'none' : `slideUp 1s ease-out ${img.delay}s forwards`,
                       transform: img.isStatic ? 'translateY(0)' : 'translateY(100vh)',
                     })
               }}
             >
-              <img src={img.src} alt="" decoding="async" className={`${img.isSmall ? 'w-full h-auto' : 'w-full h-full object-contain'} ${img.src.includes('me 2') ? 'hero-img-me2' : 'hero-img-me'}`} />
+              <img src={img.src} alt="" decoding="async" className={`${img.isSmall ? 'w-full h-auto' : 'w-full h-full object-contain'} ${img.src.includes('me 2') ? 'hero-img-me2' : 'hero-img-me'}`} style={!img.isSmall ? { objectPosition: isNarrowDesktop ? 'center bottom' : 'center' } : undefined} />
             </ClickWrapper>
           ))}
 
