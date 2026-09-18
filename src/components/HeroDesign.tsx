@@ -59,20 +59,6 @@ export function HeroDesign({ html, width, height, fit = 'cover', className = '',
         ? Math.max(w / width, h / height)
         : Math.min(w / width, h / height);
       canvas.style.transform = `translate(-50%, -50%) scale(${scale})`;
-
-      const testimonialGroup = canvas.querySelector<HTMLElement>('.testimonial-group');
-      if (testimonialGroup) {
-        if (w < 1200) {
-          const isDesktopCanvas = width > 3000;
-          const clusterCenterX = isDesktopCanvas ? 3179 : 548;
-          const clusterBottom = isDesktopCanvas ? 1370 : 1290;
-          const tx = (width / 2) - clusterCenterX;
-          const ty = height - 60 - clusterBottom;
-          testimonialGroup.style.transform = `translate(${tx}px, ${ty}px)`;
-        } else {
-          testimonialGroup.style.transform = '';
-        }
-      }
     };
 
     resize();

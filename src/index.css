@@ -465,10 +465,6 @@ video { transform: translateZ(0); }
   margin: 0;
   padding: 0;
 }
-
-.testimonial-group {
-  transition: transform 0.5s ease;
-}
 /* the export marks every layer display:block; keep images crisp while scaled */
 .hero-design img {
   image-rendering: -webkit-optimize-contrast;
