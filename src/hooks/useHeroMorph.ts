@@ -17,13 +17,13 @@ export const HERO_MORPH = {
   narrowAt: 860,
 
   title: {
-    to: { x: 0.535, y: 0.235 },
-    scale: 1.3,
+    to: { x: 0.515, y: 0.255 },
+    scale: 1.17,
   },
 
   rig: {
-    shift: { x: -0.185, y: 0.22 },
-    scale: 1.17,
+    shift: { x: -0.165, y: 0.27 },
+    scale: 0.99,
   },
 
   me2: {
