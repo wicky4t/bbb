@@ -22,7 +22,7 @@ export const HERO_MORPH = {
   },
 
   rig: {
-    shift: { x: -0.15, y: 0.27 },
+    shift: { x: -0.5, y: 0.27 },
     scale: 0.99,
   },
 
