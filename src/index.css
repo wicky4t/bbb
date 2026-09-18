@@ -443,40 +443,6 @@ video { transform: translateZ(0); }
   cursor: pointer;
 }
 
-/* === RESPONSIVE HERO IMAGES (desktop only, 768px–1024px) === */
-/* --narrowness goes from 0 (>=1024px) to 1 (<=768px) */
-.hero-img-me,
-.hero-img-me2 {
-  transition: transform 0.15s ease-out;
-}
-
-/* me.webp: stays large, moves toward center + middle-bottom, slightly larger */
-.hero-img-me {
-  transform: translateX(calc(var(--narrowness, 0) * -12vw)) translateY(calc(var(--narrowness, 0) * 22vh)) scale(calc(1 + var(--narrowness, 0) * 0.08));
-}
-
-/* me2.webp: gradually smaller + moves left, eventually off left edge */
-.hero-img-me2 {
-  transform: translateX(calc(var(--narrowness, 0) * -55vw)) translateY(calc(var(--narrowness, 0) * 8vh)) scale(calc(1 - var(--narrowness, 0) * 0.45));
-}
-
-/* === TABLET TRANSITION: title + testimonials as groups, linked to me.webp === */
-
-/* Title group (AAMIR + NAQVI wrapped in .title-group) — bigger, moves up + toward center-top */
-.hero-design.desktop-image .title-group {
-  transform: translate(calc(var(--narrowness, 0) * 650px), calc(var(--narrowness, 0) * -350px)) scale(calc(1 + var(--narrowness, 0) * 0.15));
-  transform-origin: center top;
-  transition: transform 0.15s ease-out;
-}
-
-/* Testimonial group (all testimonials wrapped in .testimonial-group) —
-   linked to me.webp: same X/Y travel, uniform scale, moves as one unit */
-.hero-design.desktop-image .testimonial-group {
-  transform: translate(calc(var(--narrowness, 0) * -12vw), calc(var(--narrowness, 0) * 22vh)) scale(calc(1 - var(--narrowness, 0) * 0.3));
-  transform-origin: center center;
-  transition: transform 0.15s ease-out;
-}
-
 @media (prefers-reduced-motion: reduce) {
   .bounce-arrow,
   .animate-fade-in-delayed,

@@ -17,23 +17,6 @@ function setMobileVH() {
   }
 }
 
-// The reference width at which the desktop layout is "perfect" (no transform needed).
-// Below this, --narrowness continuously increases from 0 toward 1 as the viewport narrows.
-const NARROWNESS_REF = 1920;
-const NARROWNESS_MIN = 768;
-
-function setNarrowness() {
-  const w = window.innerWidth;
-  if (w >= NARROWNESS_REF) {
-    document.documentElement.style.setProperty('--narrowness', '0');
-  } else if (w > NARROWNESS_MIN) {
-    const t = (NARROWNESS_REF - w) / (NARROWNESS_REF - NARROWNESS_MIN);
-    document.documentElement.style.setProperty('--narrowness', String(Math.max(0, Math.min(1, t))));
-  }
-  // At <= 768px the mobile breakpoint takes over via Tailwind's md: classes,
-  // so --narrowness is irrelevant — leave it at whatever it was.
-}
-
 const isMobile = () => window.innerWidth < 768;
 
 interface HeroImage {
@@ -139,8 +122,7 @@ function App() {
 
   useEffect(() => {
     setMobileVH();
-    setNarrowness();
-    const update = () => { setMobileVH(); setNarrowness(); };
+    const update = () => { setMobileVH(); };
     window.addEventListener('resize', update);
     window.addEventListener('orientationchange', update);
     window.addEventListener('scroll', setMobileVH);
@@ -298,8 +280,6 @@ function App() {
             fit="contain"
             className="desktop-image hero-image-layer fixed no-parallax-y hero-design-text"
             style={{ inset: 0, width: '100%', height: '100%', zIndex: 20 }}
-            narrownessScale={0.3}
-            narrownessTranslateY={4}
           />
         </div>
 
