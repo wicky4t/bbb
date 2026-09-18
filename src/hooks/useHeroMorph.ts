@@ -28,7 +28,7 @@ export const HERO_MORPH = {
 
   me2: {
     shift: -0.55,
-    fadeFrom: 0.15,
+    fadeFrom: 0.25,
     fadeTo: 0.7,
   },
 
