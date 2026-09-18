@@ -10,8 +10,6 @@ interface HeroDesignProps {
   fit?: 'cover' | 'contain';
   className?: string;
   style?: React.CSSProperties;
-  /** Minimum scale — the canvas won't shrink below this (prevents scale-down on narrow screens). */
-  minScale?: number;
 }
 
 /**
@@ -19,7 +17,7 @@ interface HeroDesignProps {
  * positioned text/image layers. This wrapper centres that canvas and scales it with a
  * CSS transform so it lines up with the hero photo behind it, at any viewport size.
  */
-export function HeroDesign({ html, width, height, fit = 'cover', className = '', style, minScale = 0 }: HeroDesignProps) {
+export function HeroDesign({ html, width, height, fit = 'cover', className = '', style }: HeroDesignProps) {
   const boxRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLDivElement>(null);
 
@@ -60,8 +58,7 @@ export function HeroDesign({ html, width, height, fit = 'cover', className = '',
       const scale = fit === 'cover'
         ? Math.max(w / width, h / height)
         : Math.min(w / width, h / height);
-      const effectiveScale = Math.max(scale, minScale);
-      canvas.style.transform = `translate(-50%, -50%) scale(${effectiveScale})`;
+      canvas.style.transform = `translate(-50%, -50%) scale(${scale})`;
     };
 
     resize();
