@@ -13,46 +13,26 @@ import { useLayoutEffect } from 'react';
  *  These are the only numbers you should need to touch.
  * ------------------------------------------------------------------ */
 export const HERO_MORPH = {
-  /** p = 0 at this width and above (current desktop look untouched) */
   wideAt: 1280,
-  /** p = 1 at this width and below (full tablet look) */
   narrowAt: 860,
 
-  /** "AAMIR NAQVI" scales up and flies to the top centre */
   title: {
-    /** final centre of the title block, as a fraction of the viewport */
-    to: { x: 0.485, y: 0.215 },
-    /** how much bigger it gets at p = 1 */
+    to: { x: 0.535, y: 0.235 },
     scale: 1.3,
   },
 
-  /**
-   * me.webp + the whole testimonial cluster are treated as ONE rig:
-   * identical translate + scale, so they never drift apart.
-   */
   rig: {
-    /** how far the rig travels, as a fraction of vw / vh */
-    shift: { x: -0.178, y: 0.22 },
-    scale: 1.3,
+    shift: { x: -0.185, y: 0.22 },
+    scale: 1.17,
   },
 
-  /** me 2.webp slides out to the left and fades away */
   me2: {
-    /** distance travelled, as a fraction of viewport width */
-    shift: -0.55,
-    /** fades out across this slice of the morph */
+    shift: -1,
     fadeFrom: 0.15,
     fadeTo: 0.7,
   },
 
-  /** the exported design canvas these coordinates were authored against */
   canvas: { w: 4591, h: 2350 },
-
-  /**
-   * Centre of the title block in canvas pixels.
-   * (#text_2 "Aamir" + #text_3 "Naqvi" bounding box, glyphs included —
-   *  the exported line boxes are 56px tall because line-height is 0.107.)
-   */
   titleAnchor: { x: 1000, y: 793 },
 };
 
